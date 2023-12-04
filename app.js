@@ -3,19 +3,19 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
-const errRouter = require("./routes/error");
+const errController = require("./controllers/error");
 const userRouter = require("./routes/user");
 
 app.use(cors());
+
+//Databse
+const sequelize = require("./util/database");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/user", userRouter);
-app.use(errRouter);
-
-//Databse
-const sequelize = require("./util/database");
+app.use(errController.error404);
 
 sequelize
   .sync()

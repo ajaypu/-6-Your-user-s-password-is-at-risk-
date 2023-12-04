@@ -22,7 +22,7 @@ async function onSignup(e) {
       throw new Error("Failed to login");
     }
   } catch (err) {
-    document.body += document.body + `<div style="color:red">${err}</div>`;
+    document.body.innerHTML += `<div style="color:red">${err}</div>`;
   }
 }
 
